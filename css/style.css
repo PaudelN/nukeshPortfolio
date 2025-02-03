@@ -27,12 +27,7 @@ body {
   height: 100%;
   width: 100%;
   scroll-behavior: smooth;
-  background: linear-gradient(
-    135deg,
-    hsl(var(--hue-color), 92%, 85%) 0%,   /* Lightest Primary */
-    hsl(var(--hue-color), 70%, 96%) 40%,  /* Soft Input Color */
-    hsl(var(--hue-color), 69%, 61%) 100%  /* Strong Primary */
-  );
+
   
 }
 
