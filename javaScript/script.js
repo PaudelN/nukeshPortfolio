@@ -100,4 +100,21 @@ $("#copy").addEventListener("click", async (e) => {
   setTimeout(() => (e.target.textContent = "Copy"), 1800);
 });
 
+// PDF preview: dialog on desktop, new tab on small screens
+const dlg = $("#pdf-dialog"),
+  frame = $("#pdf-frame");
+$$("[data-pdf]").forEach((link) =>
+  link.addEventListener("click", (e) => {
+    if (matchMedia("(max-width: 980px)").matches || !dlg.showModal) return;
+    e.preventDefault();
+    $("#pdf-title").textContent = link.dataset.title || "Document";
+    $("#pdf-open").href = link.getAttribute("href");
+    frame.src = link.getAttribute("href");
+    dlg.showModal();
+  }),
+);
+$("#pdf-close").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", (e) => e.target === dlg && dlg.close());
+dlg.addEventListener("close", () => (frame.src = "about:blank"));
+
 $("#year").textContent = new Date().getFullYear();
